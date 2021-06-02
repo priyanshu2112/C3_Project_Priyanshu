@@ -5,6 +5,8 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -81,4 +83,44 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+    //>>>>>>>>>>>>>>>>>>>>>>SELECTED LIST<<<<<<<<<<<<<<<<<<<<<<
+
+    @Test
+    public void select_item_should_increase_list_of_selected_items_size_by_1(){
+
+        int size = restaurant.getSelectedList().size();
+        int totalCost = restaurant.addItemInSelectedList(restaurant.getMenu().get(0));
+        int size1 = restaurant.getSelectedList().size();
+        assertEquals(size+1,size1);
+    }
+
+    @Test
+    public void deselect_item_should_decrease_list_of_selected_items_size_by_1(){
+        int size = restaurant.getSelectedList().size();
+        int totalCost = restaurant.removeItemInSelectedList(restaurant.getMenu().get(0));
+        int size1 = restaurant.getSelectedList().size();
+        assertEquals(size-1,size1);
+    }
+
+    //<<<<<<<<<<<<<<<<<<<<<<SELECTED LIST>>>>>>>>>>>>>>>>>>>>>>>
+
+    //>>>>>>>>>>>>>>>>>>>>>>CALCULATION<<<<<<<<<<<<<<<<<<<<<<
+
+    @Test
+    public void select_item_should_add_cost_in_total_cost(){
+        int totalCost = restaurant.getTotalCost();
+        int totalCost1 = restaurant.addItemInSelectedList(restaurant.getMenu().get(0));
+        assertEquals(totalCost+restaurant.getMenu().get(0).getPrice(),totalCost1);
+    }
+
+    @Test
+    public void deselect_item_should_minus_cost_in_total_cost(){
+        int totalCost = restaurant.getTotalCost();
+        int totalCost1 = restaurant.removeItemInSelectedList(restaurant.getMenu().get(0));
+        assertEquals(totalCost-restaurant.getMenu().get(0).getPrice(),totalCost1);
+    }
+
+    //<<<<<<<<<<<<<<<<<<<<<<CALCULATION>>>>>>>>>>>>>>>>>>>>>>>
 }

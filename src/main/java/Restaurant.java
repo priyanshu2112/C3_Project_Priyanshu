@@ -9,6 +9,13 @@ public class Restaurant {
     public LocalTime openingTime;
     public LocalTime closingTime;
     private List<Item> menu = new ArrayList<Item>();
+    private List<Item> selectedList = new ArrayList<Item>(); //temp
+
+
+
+    private int totalCost = 0;
+
+
 
     public Restaurant(String name, String location, LocalTime openingTime, LocalTime closingTime) {
         this.name = name;
@@ -73,5 +80,23 @@ public class Restaurant {
         this.openingTime = openingTime;
         this.closingTime = closingTime;
     }
+
+    public int addItemInSelectedList(Item item){
+        return 0;
+    }
+
+    public int removeItemInSelectedList(Item item){
+        return 0;
+    }
+
+    public List<Item> getSelectedList(){
+        return this.selectedList;
+    }
+
+    public int getTotalCost() {
+        return totalCost;
+    }
+
+
 
 }
