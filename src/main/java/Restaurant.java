@@ -82,11 +82,15 @@ public class Restaurant {
     }
 
     public int addItemInSelectedList(Item item){
-        return 0;
+        selectedList.add(item);
+        totalCost = totalCost+item.getPrice();
+        return totalCost;
     }
 
     public int removeItemInSelectedList(Item item){
-        return 0;
+        selectedList.remove(item);
+        totalCost = totalCost-item.getPrice();
+        return totalCost;
     }
 
     public List<Item> getSelectedList(){

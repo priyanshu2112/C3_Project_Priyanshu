@@ -98,8 +98,9 @@ class RestaurantTest {
 
     @Test
     public void deselect_item_should_decrease_list_of_selected_items_size_by_1(){
+        int totalCost = restaurant.addItemInSelectedList(restaurant.getMenu().get(1));
         int size = restaurant.getSelectedList().size();
-        int totalCost = restaurant.removeItemInSelectedList(restaurant.getMenu().get(0));
+        totalCost = restaurant.removeItemInSelectedList(restaurant.getMenu().get(1));
         int size1 = restaurant.getSelectedList().size();
         assertEquals(size-1,size1);
     }
@@ -117,7 +118,7 @@ class RestaurantTest {
 
     @Test
     public void deselect_item_should_minus_cost_in_total_cost(){
-        int totalCost = restaurant.getTotalCost();
+        int totalCost = restaurant.addItemInSelectedList(restaurant.getMenu().get(1));
         int totalCost1 = restaurant.removeItemInSelectedList(restaurant.getMenu().get(0));
         assertEquals(totalCost-restaurant.getMenu().get(0).getPrice(),totalCost1);
     }
